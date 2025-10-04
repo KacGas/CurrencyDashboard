@@ -1,0 +1,26 @@
+<h2>Kursy walut NBP z predykcją</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+  <tr>
+    <th>Waluta</th>
+    <th>Kod</th>
+    <th>Kurs średni</th>
+    <th>Predykcja</th>
+    <th>Akcja</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let rate of rates">
+    <td>{{ rate.currency }}</td>
+    <td>{{ rate.code }}</td>
+    <td>{{ rate.mid | number:'1.4-4' }}</td>
+    <td>{{ predictions[rate.code] ?? '-' }}</td>
+    <td><button (click)="predict(rate)">Predict</button></td>
+  </tr>
+  </tbody>
+  <div *ngFor="let rate of rates">
+    <button (click)="predict(rate)">Predykcja</button>
+    <app-currency-chart *ngIf="['USD','EUR','GBP','CHF'].includes(rate.code)" [rate]="rate"></app-currency-chart>
+  </div>
+</table>

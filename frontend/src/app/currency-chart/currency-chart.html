@@ -1,0 +1,4 @@
+<div *ngIf="rate">
+  <h3>{{ rate.currency }} ({{ rate.code }})</h3>
+  <canvas [id]="'chart-' + rate.code"></canvas>
+</div>
